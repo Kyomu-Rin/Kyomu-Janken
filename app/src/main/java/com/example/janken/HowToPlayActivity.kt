@@ -18,6 +18,18 @@ class HowToPlayActivity : AppCompatActivity() {
 
         // もどるボタンをタップした時
         binding.button.setOnClickListener { onButtonTapped(it) }
+
+        // 遊び方の文章表示
+        binding.HowToPlayText.setText(
+                "誰でも簡単に遊べるじゃんけんアプリです\n" +
+                "①ゲーム画面でグーチョキパーのボタンをタップしましょう\n" +
+                "②結果は勝ち負けのみですぐに表示されます\n" +
+                "③また、結果に応じてCOMからコメントがあります" +
+                "（一定の条件を満たすと特別なコメントが…??）\n" +
+                "④さらに結果画面では勝負回数や連敗回数の記録を見ることが出来ます\n" +
+                "ただし、一度メイン画面に戻ると全ての記録がリセットされるので注意してください\n\n" +
+                "Let's　enjoy　playing!!\n" +
+                "きょむじゃんけんを心ゆくまでお楽しみください^^\n")
     }
 
     fun onButtonTapped (view: View?) {

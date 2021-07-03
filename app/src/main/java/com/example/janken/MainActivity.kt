@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.edit
+import androidx.preference.PreferenceManager
 import com.example.janken.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +23,11 @@ class MainActivity : AppCompatActivity() {
 
         // あそびかたボタンをタップ
         binding.HowToPlayButton.setOnClickListener { onHowToPlayButtonTapped(it) }
+
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        pref.edit {
+            clear()
+        }
     }
 
     fun onGameStartButtonTapped (view: View?) {
