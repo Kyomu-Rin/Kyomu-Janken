@@ -56,6 +56,28 @@ class ResultActivity : AppCompatActivity() {
 
             // 2 ->　てへぺろおじさん
             mutableListOf("わしの勝ち！", "楽勝や", "何回でも勝っちゃいます", "強くてごめんよー", "勝利！"),
+
+
+            // 3 ->　おしとやか？女子
+            (mutableListOf("弱いですね", "1", "2", "3", "4")),
+
+            // 4 ->　鼻高々マン
+            (mutableListOf("1", "2", "3", "4", "5")),
+
+            // 5 ->　斜に構えるマン
+            (mutableListOf("1", "2", "3", "4", "5")),
+
+            // 6 ->　舌打ち女性
+            (mutableListOf("1", "2", "3", "4", "5")),
+
+            // 7 ->　やれやれマン
+            (mutableListOf("1", "2", "3", "4", "5")),
+
+            // 8 ->　お祈り女性
+            (mutableListOf("1", "2", "3", "4", "5")),
+
+            // 9 ->　陰ながら応援マン
+            (mutableListOf("1", "2", "3", "4", "5"))
         )
 
         // 勝った場合の画像の順番
@@ -88,67 +110,62 @@ class ResultActivity : AppCompatActivity() {
 
         var loseLength = 3
 
-        if (losedCount >= 10) {
+        if (losedCount == 10) {
             binding.ResultComment.setText("連敗回数10回目です\nなかなか勝てないんですね")
             binding.ResultPicture.setImageResource(R.drawable.pose_warau_kuchi_kakusu_woman)
 
-            // 3 ->　おしとやか？女子
-            LoseComment.add(mutableListOf("弱いですね", "1", "2", "3", "4"))
-
-            // 4 ->　鼻高々マン
-            LoseComment.add(mutableListOf("1", "2", "3", "4", "5"))
-
-            loseLength = 5
-        } else if (losedCount >= 50) {
+        } else if (losedCount == 50) {
             binding.ResultComment.setText("連敗回数50回目です\nなかなか勝てないんですね")
             binding.ResultPicture.setImageResource(R.drawable.pose_warau_kuchi_kakusu_woman)
 
-            // 5 ->　斜に構えるマン
-            LoseComment.add(mutableListOf("1", "2", "3", "4", "5"))
-
-            // 6 ->　舌打ち女性
-            LoseComment.add(mutableListOf("1", "2", "3", "4", "5"))
-
-            loseLength = 7
-
-        } else if (losedCount >= 100) {
+        } else if (losedCount == 100) {
             binding.ResultComment.setText("連敗回数100回目です\nなかなか勝てないんですね")
             binding.ResultPicture.setImageResource(R.drawable.pose_warau_kuchi_kakusu_woman)
 
-            // 7 ->　やれやれマン
-            LoseComment.add(mutableListOf("1", "2", "3", "4", "5"))
-
-            loseLength = 8
-
-        } else if (losedCount >= 200) {
+        } else if (losedCount == 200) {
             binding.ResultComment.setText("連敗回数200回目です\nなかなか勝てないんですね")
             binding.ResultPicture.setImageResource(R.drawable.pose_warau_kuchi_kakusu_woman)
 
-            // 8 ->　お祈り女性
-            LoseComment.add(mutableListOf("1", "2", "3", "4", "5"))
-
-            loseLength = 9
-
-        } else if (losedCount >= 500) {
+        } else if (losedCount == 500) {
             binding.ResultComment.setText("連敗回数500回目です\nなかなか勝てないんですね")
             binding.ResultPicture.setImageResource(R.drawable.pose_warau_kuchi_kakusu_woman)
 
-            // 9 ->　陰ながら応援マン
-            LoseComment.add(mutableListOf("1", "2", "3", "4", "5"))
-
-            loseLength = 10
-
         } else if (losedCount == 1000) {
-            binding.ResultComment.setText("連敗回数1000回です\n残す特別コメントはあと1つ\n\nあなたなら見れるはず！！")
+            binding.ResultComment.setText("連敗回数1000回です\n残す特別コメントはあと1つ.あなたなら見れるはず！！")
             binding.ResultPicture.setImageResource(R.drawable.pose_makasenasai)
 
         } else if (losedCount == 10000) {
-            binding.ResultComment.setText("連敗回数10000回です\nここまできたあなたは神です\nお疲れ様でした")
+            binding.ResultComment.setText("連敗回数10000回です\nここまできたあなたは神です.お疲れ様でした")
             binding.ResultPicture.setImageResource(R.drawable.internet_god)
+
+        } else if (losedCount > 500) {
+
+            loseLength = 10
+
+        } else if (losedCount > 200) {
+
+            loseLength = 9
+
+        } else if (losedCount > 100) {
+
+            loseLength = 8
+
+        } else if (losedCount > 50) {
+
+            loseLength = 7
+
+        } else if (losedCount > 10) {
+            loseLength = 5
+
         }
 
         if (losedCount == 0){
             // 勝利パターン
+            binding.ResultText.setText("YOU WIN")
+            binding.ResultText.setTextColor(Color.RED)
+
+            binding.ResultComment.setBackgroundColor(Color.rgb(255, 190, 218))
+
             val firstIndex = (Math.random() * WinComment.size).toInt()
 
             val text = WinComment[firstIndex][secondIndex]
@@ -167,11 +184,6 @@ class ResultActivity : AppCompatActivity() {
 
             val text = LoseComment[firstIndex][secondIndex]
             binding.ResultComment.setText(text)
-
-            binding.ResultText.setText("YOU LOSE")
-            binding.ResultText.setTextColor(Color.BLUE)
-
-            binding.ResultComment.setBackgroundColor(Color.rgb(204, 229, 255))
 
             when(firstIndex) {
                 0 -> binding.ResultPicture.setImageResource(R.drawable.pose_makasenasai)
