@@ -4,11 +4,11 @@
 
 このゲームでは虚無感を体感できます！
  
-# DEMO
+## DEMO
  
 準備中です
  
-# Features
+## Features
 
 - 勝率をかなり低めに設定
 
@@ -22,20 +22,20 @@
 - メイン画面に戻ることで記録をリセット
  
  
-# Usage
+## Usage
  
 準備中です
  
-# Note
+## Note
  
 注意点など。準備中です
  
-# Author
+## Author
  
 * 作成者:Kyomu-Rin
 * E-mail:rinka0085K@gmail.com
  
-# Thanks
+## Thanks
 
 * いらすとや
 * はじめてのAndroidプログラミング 第5版
