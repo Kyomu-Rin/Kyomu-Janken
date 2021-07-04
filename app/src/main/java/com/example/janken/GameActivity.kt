@@ -26,7 +26,13 @@ class GameActivity : AppCompatActivity() {
         binding.ReturnMainButton.setOnClickListener { onReturnMainButtonTapped(it) }
 
         // COMボタンをタップした時
-        binding.SecretButton.setOnClickListener { onSecretButtonTapped(it) }
+        binding.SecretButton.setOnClickListener {
+            val count = saveCount()
+
+            if (count == 13) {
+                onSecretButtonTapped(it)
+            }
+        }
     }
 
     // グーチョキパーのいずれかのボタンをタップした時の処理
@@ -40,9 +46,19 @@ class GameActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    // Secret画面へ移動
     fun onSecretButtonTapped (view: View?) {
         val intent = Intent(this, SecretActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun saveCount () : Int {
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        val Count = pref.getInt("COUNT", 0)
+
+        val editor = pref.edit()
+        editor.putInt("COUNT", Count + 1)
+            .apply()
+
+        return Count + 1
     }
 }
