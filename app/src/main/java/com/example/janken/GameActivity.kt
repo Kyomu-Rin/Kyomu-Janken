@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.preference.PreferenceManager
 import com.example.janken.databinding.ActivityGameBinding
 
 class GameActivity : AppCompatActivity() {
@@ -23,6 +24,9 @@ class GameActivity : AppCompatActivity() {
 
         // もどるボタンをタップした時
         binding.ReturnMainButton.setOnClickListener { onReturnMainButtonTapped(it) }
+
+        // COMボタンをタップした時
+        binding.SecretButton.setOnClickListener { onSecretButtonTapped(it) }
     }
 
     // グーチョキパーのいずれかのボタンをタップした時の処理
@@ -33,6 +37,12 @@ class GameActivity : AppCompatActivity() {
 
     fun onReturnMainButtonTapped (view: View?) {
         val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    // Secret画面へ移動
+    fun onSecretButtonTapped (view: View?) {
+        val intent = Intent(this, SecretActivity::class.java)
         startActivity(intent)
     }
 }
