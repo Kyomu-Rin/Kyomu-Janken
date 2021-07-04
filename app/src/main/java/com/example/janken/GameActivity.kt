@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.preference.PreferenceManager
 import com.example.janken.databinding.ActivityGameBinding
 
 class GameActivity : AppCompatActivity() {
@@ -23,6 +24,15 @@ class GameActivity : AppCompatActivity() {
 
         // もどるボタンをタップした時
         binding.ReturnMainButton.setOnClickListener { onReturnMainButtonTapped(it) }
+
+        // COMボタンをタップした時
+        binding.SecretButton.setOnClickListener {
+            val count = saveCount()
+
+            if (count == 13) {
+                onSecretButtonTapped(it)
+            }
+        }
     }
 
     // グーチョキパーのいずれかのボタンをタップした時の処理
@@ -34,5 +44,21 @@ class GameActivity : AppCompatActivity() {
     fun onReturnMainButtonTapped (view: View?) {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+    }
+
+    fun onSecretButtonTapped (view: View?) {
+        val intent = Intent(this, SecretActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun saveCount () : Int {
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        val Count = pref.getInt("COUNT", 0)
+
+        val editor = pref.edit()
+        editor.putInt("COUNT", Count + 1)
+            .apply()
+
+        return Count + 1
     }
 }
