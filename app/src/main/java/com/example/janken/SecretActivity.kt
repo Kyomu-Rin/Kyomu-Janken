@@ -25,12 +25,20 @@ class SecretActivity : AppCompatActivity() {
         binding.ResetButton2.setOnClickListener { onResetButtonTapped(it) }
         binding.ResetButton3.setOnClickListener { onResetButtonTapped(it) }
         binding.ResetButton4.setOnClickListener { onResetButtonTapped(it) }
-        binding.ResetButton5.setOnClickListener { onResetButtonTapped(it) }
+
+        binding.ResetRunButton.setOnClickListener { onResetRunButtonTapped(it) }
     }
 
     fun onResetButtonTapped (view: View?) {
         val reset = 1
         val count = saveSecretCount(reset)
+    }
+
+    fun onResetRunButtonTapped (view: View?) {
+        val reset = 1
+        val count = saveSecretCount(reset)
+        val intent = Intent(this, ResultActivity::class.java)
+        startActivity(intent)
     }
 
     fun onSecretReturnButtonTapped (view: View?) {
