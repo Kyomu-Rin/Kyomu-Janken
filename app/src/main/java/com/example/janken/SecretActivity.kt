@@ -30,16 +30,16 @@ class SecretActivity : AppCompatActivity() {
 
     fun onResetButtonTapped (view: View?) {
         val reset = 1
-        val count = saveCount(reset)
+        val count = saveSecretCount(reset)
     }
-
 
     fun onSecretReturnButtonTapped (view: View?) {
         val reset = 0
-        val count = saveCount(reset)
+        val count = saveSecretCount(reset)
 
         if (count == 3) {
             val intent = Intent(this, ResultActivity::class.java)
+            intent.putExtra("VALUE", 9999)
             startActivity(intent)
 
         } else {
@@ -48,14 +48,13 @@ class SecretActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveCount (reset: Int) : Int {
+    private fun saveSecretCount (reset: Int) : Int {
         val pref = PreferenceManager.getDefaultSharedPreferences(this)
         val secretCount = pref.getInt("SECRET_COUNT", 0)
 
 
         val edtSecretCount: Int =
             when {
-                // 1より大きいときは全て負け判定
                 reset == 0 -> secretCount + 1
                 else -> 0
             }
