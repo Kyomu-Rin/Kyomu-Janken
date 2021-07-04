@@ -203,16 +203,24 @@ class ResultActivity : AppCompatActivity() {
 
     // データの保存 and 連敗回数を取得
     private fun saveData (result: Int) : Pair<Int, Int> {
+
+        val value = intent.getIntExtra("VALUE", 0)
+
         val pref = PreferenceManager.getDefaultSharedPreferences(this)
         val gameCount = pref.getInt("GAME_COUNT", 0)
         val losedCount = pref.getInt("LOSED_COUNT", 0)
+        var edtLosedCount = 0
 
-        val edtLosedCount: Int =
-            when {
-                // 1より大きいときは全て負け判定
-                result > 1 -> losedCount + 1
-                else -> 0
-            }
+        if (value == 9999) {
+            edtLosedCount = 9999
+        } else {
+            edtLosedCount =
+                when {
+                    // 1より大きいときは全て負け判定
+                    result > 1 -> losedCount + 1
+                    else -> 0
+                }
+        }
 
         val editor = pref.edit()
         editor.putInt("GAME_COUNT", gameCount + 1)
