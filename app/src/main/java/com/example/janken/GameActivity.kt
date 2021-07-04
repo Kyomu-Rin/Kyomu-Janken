@@ -29,7 +29,7 @@ class GameActivity : AppCompatActivity() {
         binding.SecretButton.setOnClickListener {
             val count = saveCount()
 
-            if (count == 13) {
+            if (count % 13 == 0) {
                 onSecretButtonTapped(it)
             }
         }

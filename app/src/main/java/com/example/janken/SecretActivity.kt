@@ -1,7 +1,10 @@
 package com.example.janken
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.preference.PreferenceManager
 import com.example.janken.databinding.ActivityMainBinding
 import com.example.janken.databinding.ActivitySecretBinding
 
@@ -14,5 +17,53 @@ class SecretActivity : AppCompatActivity() {
 
         binding = ActivitySecretBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        binding.SecretReturnButton.setOnClickListener { onSecretReturnButtonTapped(it) }
+
+        binding.ResetButton1.setOnClickListener { onResetButtonTapped(it) }
+        binding.ResetButton2.setOnClickListener { onResetButtonTapped(it) }
+        binding.ResetButton3.setOnClickListener { onResetButtonTapped(it) }
+        binding.ResetButton4.setOnClickListener { onResetButtonTapped(it) }
+        binding.ResetButton5.setOnClickListener { onResetButtonTapped(it) }
+    }
+
+    fun onResetButtonTapped (view: View?) {
+        val reset = 1
+        val count = saveCount(reset)
+    }
+
+
+    fun onSecretReturnButtonTapped (view: View?) {
+        val reset = 0
+        val count = saveCount(reset)
+
+        if (count == 3) {
+            val intent = Intent(this, ResultActivity::class.java)
+            startActivity(intent)
+
+        } else {
+            val intent = Intent(this, GameActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun saveCount (reset: Int) : Int {
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        val secretCount = pref.getInt("SECRET_COUNT", 0)
+
+
+        val edtSecretCount: Int =
+            when {
+                // 1より大きいときは全て負け判定
+                reset == 0 -> secretCount + 1
+                else -> 0
+            }
+
+        val editor = pref.edit()
+        editor.putInt("SECRET_COUNT", edtSecretCount)
+            .apply()
+
+        return edtSecretCount
     }
 }
