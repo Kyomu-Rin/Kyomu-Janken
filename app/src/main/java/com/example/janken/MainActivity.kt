@@ -24,10 +24,6 @@ class MainActivity : AppCompatActivity() {
         // あそびかたボタンをタップ
         binding.HowToPlayButton.setOnClickListener { onHowToPlayButtonTapped(it) }
 
-        val pref = PreferenceManager.getDefaultSharedPreferences(this)
-        pref.edit {
-            clear()
-        }
     }
 
     fun onGameStartButtonTapped (view: View?) {
