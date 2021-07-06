@@ -5,6 +5,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import com.example.janken.databinding.ActivityGameBinding
 import com.example.janken.databinding.ActivityResultBinding
@@ -230,6 +231,12 @@ class ResultActivity : AppCompatActivity() {
 
     fun onResetButtonTapped (view: View?) {
         val intent = Intent(this, MainActivity::class.java)
+
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        pref.edit {
+            clear()
+        }
+
         startActivity(intent)
     }
 }
