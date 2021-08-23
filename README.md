@@ -42,20 +42,6 @@
 
 - ゲーム画面のリセットボタンを押すことで全ての記録をリセット
  
- 
-## Usage
- 
-準備中です
- 
-## Note
- 
-注意点など。準備中です
- 
-## Author
- 
-* 作成者:Kyomu-Rin
-* E-mail:rinka0085K@gmail.com
- 
 ## Thanks
 
 * いらすとや
